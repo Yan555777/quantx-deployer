@@ -1,0 +1,144 @@
+{
+  "strategies": [
+    {
+      "id": "SYMMETRIC_GRID",
+      "name": "Symmetric Grid",
+      "category": "Grid Trading",
+      "description": "Places buy limit orders below current price at equal spacing. When a buy fills, a TP sell is placed above it. Replenishes the buy level after each completed cycle. Does not rely on bar-based signals — event-driven on order fills.",
+      "default_risk": { "lots": 100, "tp_pct": 0.5, "sl_pct": 0 },
+      "default_params": {
+        "grid_levels": 4,
+        "grid_spacing_pct": 0.5,
+        "atr_multiplier": 0.75,
+        "tp_pct": 0.5,
+        "sl_boundary_pct": 3.0
+      },
+      "conditions": {
+        "type": "SYMMETRIC_GRID",
+        "params": {
+          "grid_levels": 4,
+          "grid_spacing_pct": 0.5,
+          "atr_multiplier": 0.75,
+          "tp_pct": 0.5,
+          "sl_boundary_pct": 3.0
+        }
+      }
+    },
+    {
+      "id": "TURTLE_TRADER",
+      "name": "Turtle Trader",
+      "category": "Trend Following",
+      "description": "Classic Donchian channel breakout. Enters long when price breaks above the N-day high, exits when price breaks below the shorter exit period low.",
+      "default_risk": { "lots": 1, "tp_pct": 0, "sl_pct": 2, "trail_pct": 0.5 },
+      "default_params": {
+        "entry_period": 45,
+        "exit_period": 15,
+        "atr_period": 14
+      },
+      "conditions": {
+        "type": "TURTLE_TRADER",
+        "params": {
+          "entry_period": 45,
+          "exit_period": 15,
+          "atr_period": 14
+        }
+      }
+    },
+    {
+      "id": "BUFFETT_BOT",
+      "name": "Buffett Bot",
+      "category": "Value / Trend",
+      "description": "Buys quality stocks when RSI is in a healthy mid-range and price is above the 200-day trend. Combines value discipline with trend confirmation.",
+      "default_risk": { "lots": 1, "tp_pct": 2, "sl_pct": 1, "trail_pct": 0.5 },
+      "default_params": {
+        "trend_period": 200,
+        "rsi_min": 40,
+        "rsi_max": 65,
+        "vol_filter": 1.2
+      },
+      "conditions": {
+        "type": "BUFFETT_BOT",
+        "params": {
+          "trend_period": 200,
+          "rsi_min": 40,
+          "rsi_max": 65,
+          "vol_filter": 1.2
+        }
+      }
+    },
+    {
+      "id": "GRAHAM_BOT",
+      "name": "Graham Bot",
+      "category": "Value / Mean Reversion",
+      "description": "Buys when price is near its 52-week low and RSI shows oversold conditions. Classic value investing — buy fear, sell recovery.",
+      "default_risk": { "lots": 1, "tp_pct": 15, "sl_pct": 5, "trail_pct": 0 },
+      "default_params": {
+        "low_lookback": 252,
+        "proximity_pct": 25,
+        "rsi_threshold": 25,
+        "target_pct": 15
+      },
+      "conditions": {
+        "type": "GRAHAM_BOT",
+        "params": {
+          "low_lookback": 252,
+          "proximity_pct": 25,
+          "rsi_threshold": 25,
+          "target_pct": 15
+        }
+      }
+    },
+    {
+      "id": "SIMONS_BOT",
+      "name": "Simons Bot",
+      "category": "Quantitative / Mean Reversion",
+      "description": "Statistical mean-reversion using Z-score and RSI confirmation. Enters when price is statistically stretched, exits when it reverts to mean.",
+      "default_risk": { "lots": 1, "tp_pct": 0.5, "sl_pct": 0.3, "trail_pct": 0 },
+      "default_params": {
+        "zscore_period": 20,
+        "zscore_threshold": 2,
+        "rsi_period": 14,
+        "rsi_threshold": 30,
+        "exit_zscore": 0
+      },
+      "conditions": {
+        "type": "SIMONS_BOT",
+        "params": {
+          "zscore_period": 20,
+          "zscore_threshold": 2,
+          "rsi_period": 14,
+          "rsi_threshold": 30,
+          "exit_zscore": 0
+        }
+      }
+    },
+    {
+      "id": "SOROS_BOT",
+      "name": "Soros Bot",
+      "category": "Momentum",
+      "description": "Multi-timeframe momentum strategy using EMA alignment and MACD confirmation with volume filter. Rides strong trends.",
+      "default_risk": { "lots": 1, "tp_pct": 0.8, "sl_pct": 0.4, "trail_pct": 0.2 },
+      "default_params": {
+        "ema_fast": 5,
+        "ema_mid": 20,
+        "ema_slow": 50,
+        "macd_fast": 12,
+        "macd_slow": 26,
+        "macd_signal": 9,
+        "volume_mult": 1.2
+      },
+      "conditions": {
+        "type": "SOROS_BOT",
+        "params": {
+          "ema_fast": 5,
+          "ema_mid": 20,
+          "ema_slow": 50,
+          "macd_fast": 12,
+          "macd_slow": 26,
+          "macd_signal": 9,
+          "volume_mult": 1.2
+        }
+      }
+    }
+  ]
+}

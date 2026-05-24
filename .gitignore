@@ -1,0 +1,37 @@
+# Database (contains encrypted credentials)
+*.db
+*.db-shm
+*.db-wal
+.fernet.key
+
+# Generated bot scripts (contain credentials)
+bots/
+
+# Logs
+logs/
+*.log
+
+# Trade logs and state
+trades/
+state/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Local config
+config.json
+
+# Test files
+test_grid.py
+
+# Options data disk cache (multi-GB, re-downloadable from R2)
+options_cache/
+
+.venv/
+*.pyc
+__pycache__/
+*.parquet
+logs.*.csv
