@@ -30,7 +30,7 @@ def _get_fmp_key():
             pass
     return key
 
-R2_ENDPOINT = os.environ.get("R2_ENDPOINT_URL", "")
+R2_ENDPOINT = os.environ.get("R2_ENDPOINT_URL") or os.environ.get("R2_ENDPOINT", "")
 R2_KEY_ID = os.environ.get("R2_ACCESS_KEY_ID", "")
 R2_SECRET = os.environ.get("R2_SECRET_ACCESS_KEY", "")
 R2_BUCKET = os.environ.get("R2_BACKTEST_BUCKET", "backtest-data")
@@ -1662,3 +1662,4 @@ def run_backtest_script(bars, script, initial_capital=10000, params_override=Non
                      "commission_pct": commission_pct, "slippage_pct": slippage_pct},
         "equity_curve": eq_s, "trades": trades[-50:],
     }
+
