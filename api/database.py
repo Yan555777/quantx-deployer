@@ -764,6 +764,38 @@ def register_custom_indicator(conn, data: dict, email: str = "",
     return ind_id
 
 
+def get_custom_indicators(conn, email: str = "") -> list[dict]:
+    """Return all custom (non-builtin) indicators, optionally filtered by creator email.
+    Called by backtest sandbox to inject user-defined indicator functions.
+    """
+    import json as _json
+    try:
+        rows = conn.execute(
+            """SELECT indicator_id, name, display_name, category, description,
+                      output_type, output_labels, params, calc_code, created_by
+               FROM indicators
+               WHERE is_builtin = 0
+               ORDER BY created_by, name"""
+        ).fetchall()
+        result = []
+        for r in rows:
+            rk = [d[0] for d in r.description] if hasattr(r, 'description') else []
+            result.append({
+                "indicator_id": r["indicator_id"],
+                "name": r["name"],
+                "display_name": r["display_name"],
+                "category": r["category"],
+                "description": r["description"],
+                "output_type": r["output_type"],
+                "output_labels": _json.loads(r["output_labels"]) if r["output_labels"] else ["main"],
+                "params": _json.loads(r["params"]) if r["params"] else [],
+                "calc_code": r["calc_code"] or "",
+                "created_by": r["created_by"],
+            })
+        return result
+    except Exception:
+        return []
+
 
     """Delete cache entries older than max_age_hours. Returns rows deleted."""
     conn = get_db()
