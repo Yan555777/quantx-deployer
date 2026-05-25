@@ -1663,3 +1663,4 @@ def run_backtest_script(bars, script, initial_capital=10000, params_override=Non
         "equity_curve": eq_s, "trades": trades[-50:],
     }
 
+
