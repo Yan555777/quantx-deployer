@@ -1,6 +1,6 @@
 # QuantX Deployer
 
-Deploy automated trading strategies on LongPort without writing code.
+Deploy automated trading strategies on LongPort without writing code. 
 
 ## Deploy to Railway (Web Hosted)
 
